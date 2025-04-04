@@ -1,138 +1,122 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2487.7">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vincent Audio Services</title>
+  <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+  <style>
+    body {
+      background-color: #008080;
+      font-family: sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .window {
+      max-width: 600px;
+      margin: 20px auto;
+      position: relative;
+    }
+
+    .taskbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 40px;
+      background-color: #c0c0c0;
+      display: flex;
+      align-items: center;
+      padding: 0 10px;
+      border-top: 2px solid white;
+    }
+
+    .start-button {
+      margin-right: 10px;
+    }
+
+    .clock {
+      margin-left: auto;
+      font-size: 0.9em;
+    }
   </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta charset="UTF-8" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;title&gt;Vincent Audio Services&lt;/title&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;link rel="stylesheet" href="https://unpkg.com/xp.css" /&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;style&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>body {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #008080;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-family: sans-serif;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 20px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.window {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>max-width: 600px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin: 20px auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: relative;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.taskbar {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>position: fixed;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>bottom: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>left: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>right: 0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>height: 40px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>background-color: #c0c0c0;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>display: flex;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>align-items: center;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>padding: 0 10px;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>border-top: 2px solid white;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.start-button {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-right: 10px;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">    </span>.clock {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>margin-left: auto;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>font-size: 0.9em;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/style&gt;</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Hero Window --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="window"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="title-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-text"&gt;Vincent's Mixing &amp; Mastering&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button aria-label="Close"&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="window-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;High-end audio services with precision and character.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;button&gt;Learn More&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- About Window --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="window"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="title-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-text"&gt;About Vincent&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button aria-label="Close"&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="window-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;I'm a freelance audio engineer with a passion for clean, punchy mixes and detailed masters. I work out of a hybrid analog/digital setup in Germany.&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Services Window --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="window"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="title-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-text"&gt;Services&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button aria-label="Close"&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="window-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;🎚️ Mixing – per track/stem based&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;🎛️ Mastering – analog/digital hybrid&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;li&gt;📦 Bundle packages available&lt;/li&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/ul&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Contact Window --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="window"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="title-bar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-text"&gt;Contact&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;div class="title-bar-controls"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">        </span>&lt;button aria-label="Close"&gt;&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="window-body"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Email: &lt;a href="mailto:vincent@yourdomain.com"&gt;vincent@yourdomain.com&lt;/a&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">      </span>&lt;p&gt;Instagram: &lt;a href="#"&gt;@vincentaudio&lt;/a&gt;&lt;/p&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;!-- Taskbar --&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;div class="taskbar"&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;button class="start-button"&gt;Start&lt;/button&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>&lt;div class="clock" id="clock"&gt;&lt;/div&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/div&gt;</p>
-<p class="p2"><br></p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;script&gt;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>// Basic clock for the taskbar</p>
-<p class="p1"><span class="Apple-converted-space">    </span>function updateClock() {</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const now = new Date();</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const hours = now.getHours().toString().padStart(2, '0');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>const minutes = now.getMinutes().toString().padStart(2, '0');</p>
-<p class="p1"><span class="Apple-converted-space">      </span>document.getElementById('clock').textContent = `${hours}:${minutes}`;</p>
-<p class="p1"><span class="Apple-converted-space">    </span>}</p>
-<p class="p1"><span class="Apple-converted-space">    </span>setInterval(updateClock, 1000);</p>
-<p class="p1"><span class="Apple-converted-space">    </span>updateClock();</p>
-<p class="p1"><span class="Apple-converted-space">  </span>&lt;/script&gt;</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+  <!-- Hero Window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Vincent's Mixing & Mastering</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>High-end audio services with precision and character.</p>
+      <button>Learn More</button>
+    </div>
+  </div>
+
+  <!-- About Window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">About Vincent</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>I'm a freelance audio engineer with a passion for clean, punchy mixes and detailed masters. I work out of a hybrid analog/digital setup in Germany.</p>
+    </div>
+  </div>
+
+  <!-- Services Window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Services</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <ul>
+        <li>🎚️ Mixing – per track/stem based</li>
+        <li>🎛️ Mastering – analog/digital hybrid</li>
+        <li>📦 Bundle packages available</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Contact Window -->
+  <div class="window">
+    <div class="title-bar">
+      <div class="title-bar-text">Contact</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p>Email: <a href="mailto:vincent@yourdomain.com">vincent@yourdomain.com</a></p>
+      <p>Instagram: <a href="#">@vincentaudio</a></p>
+    </div>
+  </div>
+
+  <!-- Taskbar -->
+  <div class="taskbar">
+    <button class="start-button">Start</button>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <script>
+    // Basic clock for the taskbar
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+  </script>
 </body>
 </html>
