@@ -32,22 +32,9 @@
       width: 100px;
     }
 
-    .folder {
-      margin: 10px auto;
-      max-width: 700px;
-    }
-
-    details {
-      background: #e0e0e0;
-      border: 2px solid #808080;
-      margin-bottom: 10px;
-      padding: 10px;
-      font-size: 14px;
-    }
-
-    summary {
-      font-weight: bold;
-      cursor: pointer;
+    .window {
+      max-width: 600px;
+      margin: 30px auto;
     }
 
     .gear-icon {
@@ -85,8 +72,29 @@
     <img src="icons/xploading.gif" alt="Loading...">
   </div>
 
-  <div class="folder" style="display: none;" id="mainContent">
-    <!-- Existing content here -->
+  <div style="display: none;" id="mainContent">
+    <div class="window" id="gearWindow">
+      <div class="title-bar">
+        <div class="title-bar-text">Studio Gear Overview</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <ul>
+          <li><img class="gear-icon" src="icons/m15a.png">Telefunken M15A master tape machine</li>
+          <li>Apollo 8 Thunderbolt converters</li>
+          <li><img class="gear-icon" src="icons/eqp1a.png">Audioscape Pultec EQP1</li>
+          <li>Modded EELA Audio 12-channel summing desk</li>
+          <li><img class="gear-icon" src="icons/quadraverb.png">Alesis Quadraverb</li>
+          <li><img class="gear-icon" src="icons/rainmaker.png">Intellijel Rainmaker</li>
+          <li>ATLP 120x DJ setup with Omnitronic 222 mixer</li>
+          <li>Zoom stereo recorder</li>
+          <li>Shure SM7, t.bone SC500</li>
+          <li><img class="gear-icon" src="icons/1176.png">1176-style compressor</li>
+        </ul>
+      </div>
+    </div>
   </div>
 
   <div class="taskbar" style="display: none;" id="taskbar">
