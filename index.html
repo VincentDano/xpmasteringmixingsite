@@ -79,17 +79,49 @@
     .tab-content.active { display: block; }
     .notification {
       position: fixed;
-      bottom: 60px;
-      right: 20px;
-      z-index: 9999;
-      max-width: 250px;
+      bottom: 50px;
+      right: 10px;
+      background-color: #ffffe1;
+      border: 1px solid #000080;
+      padding: 10px;
+      font-family: Tahoma, sans-serif;
+      font-size: 13px;
+      max-width: 260px;
+      box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+      border-radius: 4px;
       opacity: 0;
-      transition: opacity 0.5s ease-in-out;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
       pointer-events: none;
+      z-index: 9999;
     }
     .notification.visible {
       opacity: 1;
+      transform: translateY(0);
       pointer-events: auto;
+    }
+    .notification::after {
+      content: "";
+      position: absolute;
+      bottom: -10px;
+      right: 20px;
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid #ffffe1;
+    }
+    .notification button.close-btn {
+      position: absolute;
+      top: 4px;
+      right: 6px;
+      background: none;
+      border: none;
+      font-weight: bold;
+      font-family: Tahoma;
+      cursor: pointer;
+      font-size: 16px;
+      line-height: 1;
     }
     #loading-screen {
       position: fixed;
@@ -115,55 +147,23 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      const loading = document.getElementById("loading-screen");
-      setTimeout(() => {
-        loading.classList.add("fade-out");
-        setTimeout(() => loading.remove(), 500);
-      }, 2000);
-
       const popup = document.getElementById('labelPopup');
-popup.classList.remove('visible'); // ensure it's hidden on load
-setTimeout(() => {
-  popup.classList.add('visible');
-}, 5000);
+      const closeBtn = document.getElementById('closeNotification');
 
-      const windows = document.querySelectorAll('.window');
-      const spacing = 160;
-      let i = 0;
-      windows.forEach(win => {
-        if (!win.classList.contains("notification")) {
-          const top = 40 + (Math.random() * 100) + (i * spacing) % 400;
-          const left = 40 + (Math.random() * 200) + ((i * spacing) % 600);
-          win.style.top = `${top}px`;
-          win.style.left = `${left}px`;
-        }
-        makeDraggable(win);
-        i++;
+      popup.classList.remove('visible');
+      setTimeout(() => {
+        popup.classList.add('visible');
+        const sound = new Audio('balloon.mp3');
+        sound.play().catch(() => {});
+      }, 5000);
+
+      closeBtn.addEventListener('click', () => {
+        popup.classList.remove('visible');
       });
     });
-
-    function makeDraggable(el) {
-      const header = el.querySelector('.title-bar');
-      let offsetX = 0, offsetY = 0, isDown = false;
-      header.addEventListener('mousedown', function (e) {
-        isDown = true;
-        const rect = el.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
-        header.style.cursor = 'grabbing';
-      });
-      document.addEventListener('mouseup', function () {
-        isDown = false;
-        header.style.cursor = 'grab';
-      });
-      document.addEventListener('mousemove', function (e) {
-        if (!isDown) return;
-        el.style.left = `${e.clientX - offsetX}px`;
-        el.style.top = `${e.clientY - offsetY}px`;
-      });
-    }
   </script>
 </head>
+
 <body>
 <div id="loading-screen">
   <img src="icons/xploading.gif" alt="Loading...">
