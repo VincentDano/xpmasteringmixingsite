@@ -34,30 +34,31 @@
 
     .window {
       max-width: 600px;
-      margin: 30px auto;
       position: absolute;
       z-index: 10;
     }
 
-    .gear-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 15px;
+    .gear-folder-list {
+      display: flex;
+      flex-wrap: wrap;
       padding: 10px;
+      gap: 16px;
     }
 
-    .gear-item {
+    .folder-icon {
+      width: 64px;
+      height: 64px;
+      background: url('https://win98icons.alexmeub.com/icons/png/folder_open_file_mydocs-5.png') no-repeat center;
+      background-size: contain;
+      text-align: center;
+      font-size: 12px;
+      color: black;
+      width: 80px;
+      height: 80px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      text-align: center;
-      font-size: 13px;
-    }
-
-    .gear-icon {
-      width: 32px;
-      height: 32px;
-      margin-bottom: 5px;
+      justify-content: flex-end;
     }
 
     .taskbar {
@@ -97,17 +98,17 @@
         </div>
       </div>
       <div class="window-body">
-        <div class="gear-grid">
-          <div class="gear-item"><img class="gear-icon" src="icons/m15a.png"><span>M15A Tape Machine</span></div>
-          <div class="gear-item"><img class="gear-icon" src="icons/eqp1a.png"><span>Pultec EQP1</span></div>
-          <div class="gear-item"><img class="gear-icon" src="icons/quadraverb.png"><span>Alesis Quadraverb</span></div>
-          <div class="gear-item"><img class="gear-icon" src="icons/rainmaker.png"><span>Rainmaker</span></div>
-          <div class="gear-item"><img class="gear-icon" src="icons/1176.png"><span>1176 Compressor</span></div>
-          <div class="gear-item"><span>Apollo 8</span></div>
-          <div class="gear-item"><span>EELA Summing Desk</span></div>
-          <div class="gear-item"><span>DJ Setup</span></div>
-          <div class="gear-item"><span>Zoom Recorder</span></div>
-          <div class="gear-item"><span>Shure SM7 / SC500</span></div>
+        <div class="gear-folder-list">
+          <div class="folder-icon">M15A Tape</div>
+          <div class="folder-icon">Pultec EQP1</div>
+          <div class="folder-icon">Quadraverb</div>
+          <div class="folder-icon">Rainmaker</div>
+          <div class="folder-icon">1176</div>
+          <div class="folder-icon">Apollo 8</div>
+          <div class="folder-icon">Summing Desk</div>
+          <div class="folder-icon">DJ Setup</div>
+          <div class="folder-icon">Zoom Rec</div>
+          <div class="folder-icon">SM7 / SC500</div>
         </div>
       </div>
     </div>
@@ -162,9 +163,8 @@
       header.addEventListener('mousedown', function (e) {
         e.preventDefault();
         isDown = true;
-        const rect = el.getBoundingClientRect();
-        offsetX = e.clientX - rect.left;
-        offsetY = e.clientY - rect.top;
+        offsetX = e.offsetX;
+        offsetY = e.offsetY;
         header.style.cursor = 'grabbing';
       });
 
