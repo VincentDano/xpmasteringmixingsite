@@ -38,7 +38,7 @@
       border: 1px solid black;
     }
     .title-bar {
-      cursor: grab;
+      cursor: point;
     }
     .taskbar {
       position: fixed;
@@ -65,14 +65,46 @@
     .tabs button.active { background-color: #ffffff; font-weight: bold; }
     .tab-content { border: 1px solid #000; background-color: #ffffff; padding: 10px; display: none; }
     .tab-content.active { display: block; }
+
+    .notification {
+      position: fixed;
+      bottom: 60px;
+      right: 20px;
+      z-index: 9999;
+      max-width: 250px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .notification.visible {
+      opacity: 1;
+    }
   </style>
   <script>
     if (window.innerWidth < 768) {
       window.location.replace("mobile.html");
     }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const popup = document.getElementById('labelPopup');
+        popup.classList.add('visible');
+      }, 5000);
+    });
   </script>
 </head>
 <body>
+
+<div class="window notification" id="labelPopup">
+  <div class="title-bar">
+    <div class="title-bar-text">Notification</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="document.getElementById('labelPopup').style.display='none'"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p>Check out the label → <a href="https://binarypleasures.com" target="_blank">binarypleasures.com</a></p>
+  </div>
+</div>
 
 <div class="taskbar" id="taskbar">
   <button class="taskbar-button" onclick="restoreWindow('windowSpotify', this)">Playlist – Selected Works</button>
