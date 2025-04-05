@@ -1,4 +1,3 @@
-<!-- full document with verified icons and full gear list -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,50 +13,27 @@
       margin: 0;
       padding: 20px;
     }
-    .loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s ease;
+    .highlighted-gear {
+      list-style: none;
+      margin-left: 0;
     }
-    .loader img {
-      width: 100px;
+    .highlighted-gear img {
+      width: 48px !important;
+      vertical-align: middle;
+      margin-right: 8px;
+      transition: transform 0.6s ease-in-out;
+    }
+    .highlighted-gear img:hover {
+      transform: rotateY(360deg);
     }
     .window {
       max-width: 700px;
       position: absolute;
       z-index: 10;
+      border: 1px solid black;
     }
-    .tabs {
-      display: flex;
-      margin-bottom: 8px;
-    }
-    .tabs button {
-      padding: 4px 10px;
-      border: 1px solid #000;
-      border-bottom: none;
-      background-color: #d4d0c8;
-      cursor: pointer;
-    }
-    .tabs button.active {
-      background-color: #ffffff;
-      font-weight: bold;
-    }
-    .tab-content {
-      border: 1px solid #000;
-      background-color: #ffffff;
-      padding: 10px;
-      display: none;
-    }
-    .tab-content.active {
-      display: block;
+    .title-bar {
+      cursor: grab;
     }
     .taskbar {
       position: fixed;
@@ -70,33 +46,24 @@
       align-items: center;
       padding: 0 10px;
       border-top: 2px solid white;
-      gap: 6px;
       font-family: Tahoma, Geneva, sans-serif;
-    }
-    .start-button {
-      margin-right: 10px;
     }
     .clock {
       margin-left: auto;
       font-size: 0.9em;
     }
     .taskbar-button {
-      font-size: 0.9em;
-      padding: 3px 6px;
-    }
-    .tab-content li img {
-      vertical-align: middle;
-      margin-right: 8px;
+      margin-right: 6px;
     }
   </style>
 </head>
 <body>
   <audio id="logonSound" src="logonsound.mp3" preload="auto"></audio>
-  <div class="loader" id="loader">
-    <img src="icons/xploading.gif" alt="Loading...">
+  <div class="loader" id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease;">
+    <img src="icons/xploading.gif" alt="Loading..." style="width: 100px;">
   </div>
 
-  <div style="display: none;" id="mainContent">
+  <div id="mainContent" style="display: none;">
     <div class="window" id="window1" style="top: 80px; left: 40px;">
       <div class="title-bar">
         <div class="title-bar-text">Studio Gear Overview</div>
@@ -105,68 +72,18 @@
         </div>
       </div>
       <div class="window-body">
-        <div class="tabs" id="gearTabs">
-          <button class="active">Outboard</button>
-          <button>Software</button>
-          <button>Synths</button>
-          <button>Instruments</button>
-          <button>Monitoring</button>
-        </div>
-        <div class="tab-content active">
-          <ul>
-            <li><img src="icons/m15a.png" width="24"> Telefunken M15A Tape Machine</li>
-            <li><img src="icons/eqp1a.png" width="24"> Audioscape Pultec EQP1</li>
-            <li><img src="icons/quadraverb.png" width="24"> Alesis Quadraverb</li>
-            <li><img src="icons/rainmaker.png" width="24"> Intellijel Rainmaker</li>
-            <li><img src="icons/1176.png" width="24"> 1176 Compressor</li>
-            <li>Modded EELA Audio 12ch Summing Desk</li>
-            <li>Apollo 8 Thunderbolt Converters</li>
-            <li>ATLP-120x DJ Setup w/ Omnitronic 222</li>
-            <li>Zoom Stereo Recorder</li>
-            <li>Shure SM7, t.bone SC500</li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <ul>
-            <li>Live 12 Suite</li>
-            <li>Pro Tools</li>
-            <li>Reason 11</li>
-            <li>Arturia V Collection X</li>
-            <li>Arturia FX Collection 5</li>
-            <li>FabFilter Pro-Q, Pro-L, Pro-R, Pro-C</li>
-            <li>Soundtheory Gullfoss</li>
-            <li>iZotope Nectar, Neutron, Ozone 3, RX8</li>
-            <li>SIR Standard Clip</li>
-            <li>Sonnox Oxford Inflator</li>
-            <li>Waves C6, RBass, S1 Imager, etc.</li>
-            <li>UAD Signature Collection</li>
-            <li>MeldaProduction Suite</li>
-            <li>SPAT Room Simulation</li>
-            <li>Melodyne Vocal Correction</li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <ul>
-            <li>Nord Lead 2X</li>
-            <li><img src="icons/monomachine.png" width="24"> Elektron Monomachine</li>
-            <li>Elektron Octatrack MK2</li>
-            <li>ARP 2600</li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <ul>
-            <li>Fender Jazz Bass (Mexican)</li>
-            <li>Squier Telecaster</li>
-            <li>Random percussion (shakers, etc.)</li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <ul>
-            <li>ADAM Audio T5V</li>
-            <li>Auralex Treatment</li>
-            <li>Sonarworks Room Calibration</li>
-          </ul>
-        </div>
+        <ul>
+          <li class="highlighted-gear"><img src="icons/m15a.png" alt="M15A"> Telefunken M15A Tape Machine</li>
+          <li class="highlighted-gear"><img src="icons/eqp1a.png" alt="Pultec"> Audioscape Pultec EQP1</li>
+          <li class="highlighted-gear"><img src="icons/quadraverb.png" alt="Quadraverb"> Alesis Quadraverb</li>
+          <li class="highlighted-gear"><img src="icons/rainmaker.png" alt="Rainmaker"> Intellijel Rainmaker</li>
+          <li class="highlighted-gear"><img src="icons/1176.png" alt="1176"> 1176 Compressor</li>
+          <li>Modded EELA Audio 12ch Summing Desk</li>
+          <li>Apollo 8 Thunderbolt Converters</li>
+          <li>ATLP-120x DJ Setup w/ Omnitronic 222</li>
+          <li>Zoom Stereo Recorder</li>
+          <li>Shure SM7, t.bone SC500</li>
+        </ul>
       </div>
     </div>
 
@@ -225,7 +142,6 @@
     function makeDraggable(el) {
       const header = el.querySelector('.title-bar');
       let offsetX = 0, offsetY = 0, isDown = false;
-      header.style.cursor = 'grab';
       header.addEventListener('mousedown', function (e) {
         isDown = true;
         const rect = el.getBoundingClientRect();
@@ -261,17 +177,6 @@
     document.addEventListener('DOMContentLoaded', () => {
       makeDraggable(document.getElementById('window1'));
       makeDraggable(document.getElementById('window2'));
-
-      const tabs = document.querySelectorAll('#gearTabs button');
-      const contents = document.querySelectorAll('.tab-content');
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-          tabs.forEach(t => t.classList.remove('active'));
-          contents.forEach(c => c.classList.remove('active'));
-          tab.classList.add('active');
-          contents[index].classList.add('active');
-        });
-      });
     });
   </script>
 </body>
