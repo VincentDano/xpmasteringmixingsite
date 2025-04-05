@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -68,6 +67,81 @@
   </style>
 </head>
 <body>
+
+<div class="taskbar" id="taskbar">
+  <button class="taskbar-button" onclick="restoreWindow('windowSpotify', this)">Playlist – Selected Works</button>
+  <div class="clock" id="clock"></div>
+</div>
+
+<!-- Spotify Playlist Window -->
+<div class="window" id="windowSpotify" style="top: 500px; left: 40px; display: none;">
+  <div class="title-bar">
+    <div class="title-bar-text">Playlist – Selected Works</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="minimizeToTaskbar('windowSpotify')"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4CSGT8AgTrb9MVx0JM2ASa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+</div>
+
+<script>
+  function makeDraggable(el) {
+    const header = el.querySelector('.title-bar');
+    let offsetX = 0, offsetY = 0, isDown = false;
+    header.addEventListener('mousedown', function (e) {
+      isDown = true;
+      const rect = el.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+      header.style.cursor = 'grabbing';
+    });
+    document.addEventListener('mouseup', function () {
+      isDown = false;
+      header.style.cursor = 'grab';
+    });
+    document.addEventListener('mousemove', function (e) {
+      if (!isDown) return;
+      el.style.left = `${e.clientX - offsetX}px`;
+      el.style.top = `${e.clientY - offsetY}px`;
+    });
+  }
+
+  function minimizeToTaskbar(id) {
+    const el = document.getElementById(id);
+    el.style.display = 'none';
+    const taskbar = document.getElementById('taskbar');
+    const btn = document.createElement('button');
+    btn.textContent = el.querySelector('.title-bar-text').textContent;
+    btn.className = 'taskbar-button';
+    btn.onclick = function () {
+      restoreWindow(id, this);
+    };
+    taskbar.insertBefore(btn, taskbar.lastElementChild);
+  }
+
+  function restoreWindow(id, btn) {
+    const el = document.getElementById(id);
+    el.style.display = 'block';
+    if (btn) btn.remove();
+  }
+
+  function updateClock() {
+    const now = new Date();
+    const hours = now.getHours().toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+    document.getElementById('clock').textContent = `${hours}:${minutes}`;
+  }
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  document.addEventListener('DOMContentLoaded', () => {
+    makeDraggable(document.getElementById('windowSpotify'));
+  });
+</script>
+
+</body>
 
 <div class="window" id="windowSpotify" style="top: 500px; left: 40px;">
   <div class="title-bar">
