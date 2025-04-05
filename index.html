@@ -17,14 +17,18 @@
       list-style: none;
       margin-left: 0;
     }
-    .highlighted-gear img {
+    .highlighted-gear > img {
       width: 48px !important;
       vertical-align: middle;
       margin-right: 8px;
       transition: transform 0.6s ease-in-out;
+      display: inline-block;
     }
-    .highlighted-gear img:hover {
+    .highlighted-gear > img:hover {
       transform: rotateY(360deg);
+    }
+    .highlighted-gear > *:not(img) {
+      display: inline;
     }
     .window {
       max-width: 700px;
