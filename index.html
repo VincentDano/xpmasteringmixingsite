@@ -84,7 +84,85 @@
   </div>
 
   <div style="display: none;" id="mainContent">
-    <!-- windows remain unchanged -->
+    <div class="window" id="window1" style="top: 80px; left: 40px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Studio Gear Overview</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="minimizeToTaskbar('window1')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <div class="tabbed-pane">
+          <menu role="tablist">
+            <button role="tab" aria-selected="true">Outboard</button>
+            <button role="tab">Software</button>
+            <button role="tab">Synths</button>
+            <button role="tab">Instruments</button>
+            <button role="tab">Monitoring</button>
+          </menu>
+          <article role="tabpanel">
+            <fieldset><legend>Outboard & Recording</legend>
+              <label><img src="icons/m15a.png">Telefunken M15A master tape machine</label>
+              <label><img src="icons/eqp1a.png">Audioscape Pultec EQP1</label>
+              <label><img src="icons/quadraverb.png">Alesis Quadraverb</label>
+              <label><img src="icons/rainmaker.png">Intellijel Rainmaker</label>
+              <label><img src="icons/1176.png">1176-style compressor</label>
+              <label>Apollo 8 Thunderbolt converters</label>
+              <label>Modded EELA Audio 12-channel summing desk</label>
+              <label>ATLP 120x DJ setup w/ Omnitronic 222 mixer</label>
+              <label>Zoom stereo recorder</label>
+              <label>Shure SM7, t.bone SC500</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Software</legend>
+              <label>Live 12 Suite, Pro Tools, Reason 11</label>
+              <label>Arturia V Collection X + FX Collection 5</label>
+              <label>FabFilter Pro-Q/L/R/C, SoundTheory Gullfoss</label>
+              <label>iZotope Nectar/Neutron/Ozone, RX 8</label>
+              <label>SIR StandardClip, Sonnox Oxford Inflator</label>
+              <label>Waves (C6, RBass, S1, etc.), UAD Signature</label>
+              <label>Melda Production Suite, SPAT, Melodyne</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Synths</legend>
+              <label>Nord Lead 2X</label>
+              <label><img src="icons/monomachine.png">Elektron Monomachine</label>
+              <label>Elektron Octatrack MKII</label>
+              <label>ARP 2600</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Instruments</legend>
+              <label>Fender Jazz Bass (Mexican)</label>
+              <label>Squier Telecaster</label>
+              <label>Random percussion (shakers, etc.)</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Monitoring</legend>
+              <label>ADAM Audio T5V</label>
+              <label>Auralex Treatment</label>
+              <label>Sonarworks Calibration</label>
+            </fieldset>
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="window" id="window2" style="top: 100px; left: 680px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Contact</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close" onclick="minimizeToTaskbar('window2')"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Email: <a href="mailto:vincent@binarypleasures.com">vincent@binarypleasures.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/vincentdanopoulos" target="_blank">@vincentdanopoulos</a></p>
+      </div>
+    </div>
   </div>
 
   <div class="taskbar" style="display: none;" id="taskbar">
