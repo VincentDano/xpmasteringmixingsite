@@ -35,13 +35,30 @@
     .window {
       max-width: 600px;
       margin: 30px auto;
+      cursor: move;
+      position: absolute;
+      z-index: 10;
+    }
+
+    .gear-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 15px;
+      padding: 10px;
+    }
+
+    .gear-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      font-size: 13px;
     }
 
     .gear-icon {
-      width: 16px;
-      height: 16px;
-      vertical-align: middle;
-      margin-right: 5px;
+      width: 32px;
+      height: 32px;
+      margin-bottom: 5px;
     }
 
     .taskbar {
@@ -73,7 +90,7 @@
   </div>
 
   <div style="display: none;" id="mainContent">
-    <div class="window" id="gearWindow">
+    <div class="window" id="window1" style="top: 80px; left: 40px;">
       <div class="title-bar">
         <div class="title-bar-text">Studio Gear Overview</div>
         <div class="title-bar-controls">
@@ -81,18 +98,31 @@
         </div>
       </div>
       <div class="window-body">
-        <ul>
-          <li><img class="gear-icon" src="icons/m15a.png">Telefunken M15A master tape machine</li>
-          <li>Apollo 8 Thunderbolt converters</li>
-          <li><img class="gear-icon" src="icons/eqp1a.png">Audioscape Pultec EQP1</li>
-          <li>Modded EELA Audio 12-channel summing desk</li>
-          <li><img class="gear-icon" src="icons/quadraverb.png">Alesis Quadraverb</li>
-          <li><img class="gear-icon" src="icons/rainmaker.png">Intellijel Rainmaker</li>
-          <li>ATLP 120x DJ setup with Omnitronic 222 mixer</li>
-          <li>Zoom stereo recorder</li>
-          <li>Shure SM7, t.bone SC500</li>
-          <li><img class="gear-icon" src="icons/1176.png">1176-style compressor</li>
-        </ul>
+        <div class="gear-grid">
+          <div class="gear-item"><img class="gear-icon" src="icons/m15a.png"><span>M15A Tape Machine</span></div>
+          <div class="gear-item"><img class="gear-icon" src="icons/eqp1a.png"><span>Pultec EQP1</span></div>
+          <div class="gear-item"><img class="gear-icon" src="icons/quadraverb.png"><span>Alesis Quadraverb</span></div>
+          <div class="gear-item"><img class="gear-icon" src="icons/rainmaker.png"><span>Rainmaker</span></div>
+          <div class="gear-item"><img class="gear-icon" src="icons/1176.png"><span>1176 Compressor</span></div>
+          <div class="gear-item"><span>Apollo 8</span></div>
+          <div class="gear-item"><span>EELA Summing Desk</span></div>
+          <div class="gear-item"><span>DJ Setup</span></div>
+          <div class="gear-item"><span>Zoom Recorder</span></div>
+          <div class="gear-item"><span>Shure SM7 / SC500</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="window" id="window2" style="top: 100px; left: 680px;">
+      <div class="title-bar">
+        <div class="title-bar-text">Contact</div>
+        <div class="title-bar-controls">
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="window-body">
+        <p>Email: <a href="mailto:vincent@binarypleasures.com">vincent@binarypleasures.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/vincentdanopoulos" target="_blank">@vincentdanopoulos</a></p>
       </div>
     </div>
   </div>
@@ -123,6 +153,36 @@
         }, 500);
       }, 2500);
     };
+
+    function makeDraggable(el) {
+      const header = el.querySelector('.title-bar');
+      let offsetX = 0, offsetY = 0, isDown = false;
+
+      header.style.cursor = 'grab';
+
+      header.addEventListener('mousedown', function (e) {
+        isDown = true;
+        offsetX = e.clientX - el.offsetLeft;
+        offsetY = e.clientY - el.offsetTop;
+        header.style.cursor = 'grabbing';
+      });
+
+      document.addEventListener('mouseup', function () {
+        isDown = false;
+        header.style.cursor = 'grab';
+      });
+
+      document.addEventListener('mousemove', function (e) {
+        if (!isDown) return;
+        el.style.left = (e.clientX - offsetX) + 'px';
+        el.style.top = (e.clientY - offsetY) + 'px';
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      makeDraggable(document.getElementById('window1'));
+      makeDraggable(document.getElementById('window2'));
+    });
   </script>
 </body>
 </html>
