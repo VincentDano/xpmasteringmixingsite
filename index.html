@@ -86,7 +86,7 @@
       padding: 10px;
       font-family: Tahoma, sans-serif;
       font-size: 13px;
-      max-width: 260px;
+      width: 260px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
       border-radius: 4px;
       opacity: 0;
@@ -158,12 +158,34 @@
         setTimeout(() => loading.remove(), 500);
       }, 1500);
 
-      // Position windows randomly (non-overlapping staggered start)
+      // Position windows in staggered layout and make them draggable
       let startX = 40;
       let startY = 60;
       windows.forEach((win, index) => {
         win.style.top = `${startY + index * 30}px`;
         win.style.left = `${startX + index * 40}px`;
+
+        const title = win.querySelector('.title-bar');
+        let offsetX, offsetY, isDragging = false;
+
+        title.addEventListener('mousedown', (e) => {
+          isDragging = true;
+          const rect = win.getBoundingClientRect();
+          offsetX = e.clientX - rect.left;
+          offsetY = e.clientY - rect.top;
+          title.style.cursor = 'grabbing';
+        });
+
+        document.addEventListener('mousemove', (e) => {
+          if (!isDragging) return;
+          win.style.left = `${e.clientX - offsetX}px`;
+          win.style.top = `${e.clientY - offsetY}px`;
+        });
+
+        document.addEventListener('mouseup', () => {
+          isDragging = false;
+          title.style.cursor = 'grab';
+        });
       });
 
       // Label popup
@@ -180,6 +202,7 @@
     });
   </script>
 </head>
+
 
 <body>
 <div id="loading-screen">
