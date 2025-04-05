@@ -12,6 +12,7 @@
       font-family: Tahoma, Geneva, sans-serif;
       margin: 0;
       padding: 20px;
+      user-select: none;
     }
     .highlighted-gear {
       list-style: none;
@@ -38,7 +39,10 @@
       border: 1px solid black;
     }
     .title-bar {
-      cursor: point;
+      cursor: grab;
+    }
+    .notification .title-bar {
+      cursor: default;
     }
     .taskbar {
       position: fixed;
@@ -93,6 +97,19 @@
   </script>
 </head>
 <body>
+
+<div class="window notification" id="labelPopup">
+  <div class="title-bar">
+    <div class="title-bar-text">Notification</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="document.getElementById('labelPopup').style.display='none'"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <p>Check out the label → <a href="https://binarypleasures.com" target="_blank">binarypleasures.com</a></p>
+  </div>
+</div>
+
 
 <div class="window notification" id="labelPopup">
   <div class="title-bar">
