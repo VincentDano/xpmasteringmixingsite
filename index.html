@@ -68,6 +68,21 @@
   </style>
 </head>
 <body>
+
+<div class="window" id="windowSpotify" style="top: 500px; left: 40px;">
+  <div class="title-bar">
+    <div class="title-bar-text">Playlist – Selected Works</div>
+    <div class="title-bar-controls">
+      <button aria-label="Close" onclick="minimizeToTaskbar('windowSpotify')"></button>
+    </div>
+  </div>
+  <div class="window-body">
+    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4CSGT8AgTrb9MVx0JM2ASa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+  </div>
+</div>
+
+</body>
+
   <audio id="logonSound" src="logonsound.mp3" preload="auto"></audio>
   <div class="loader" id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; display: flex; justify-content: center; align-items: center; z-index: 9999; transition: opacity 0.5s ease;">
     <img src="icons/xploading.gif" alt="Loading..." style="width: 100px;">
