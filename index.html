@@ -121,10 +121,11 @@
         setTimeout(() => loading.remove(), 500);
       }, 2000);
 
-      setTimeout(() => {
-        const popup = document.getElementById('labelPopup');
-        popup.classList.add('visible');
-      }, 5000);
+      const popup = document.getElementById('labelPopup');
+popup.classList.remove('visible'); // ensure it's hidden on load
+setTimeout(() => {
+  popup.classList.add('visible');
+}, 5000);
 
       const windows = document.querySelectorAll('.window');
       const spacing = 160;
