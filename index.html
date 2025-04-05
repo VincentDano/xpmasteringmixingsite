@@ -13,10 +13,29 @@
       padding: 20px;
     }
 
-    .window {
-      max-width: 600px;
-      margin: 20px auto;
-      position: relative;
+    .folder {
+      margin: 10px auto;
+      max-width: 700px;
+    }
+
+    details {
+      background: #e0e0e0;
+      border: 2px solid #808080;
+      margin-bottom: 10px;
+      padding: 10px;
+      font-size: 14px;
+    }
+
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .gear-icon {
+      width: 16px;
+      height: 16px;
+      vertical-align: middle;
+      margin-right: 5px;
     }
 
     .taskbar {
@@ -43,72 +62,79 @@
   </style>
 </head>
 <body>
-  <!-- Hero Window -->
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">Vincent's Mixing & Mastering</div>
-      <div class="title-bar-controls">
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="window-body">
-      <p>High-end audio services with precision and character.</p>
-      <button>Learn More</button>
-    </div>
-  </div>
-
-  <!-- About Window -->
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">About Vincent</div>
-      <div class="title-bar-controls">
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="window-body">
-      <p>I'm a freelance audio engineer with a passion for clean, punchy mixes and detailed masters. I work out of a hybrid analog/digital setup in Germany.</p>
-    </div>
-  </div>
-
-  <!-- Services Window -->
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">Services</div>
-      <div class="title-bar-controls">
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="window-body">
+  <div class="folder">
+    <details open>
+      <summary>📁 Outboard and Recording</summary>
       <ul>
-        <li>🎚️ Mixing – per track/stem based</li>
-        <li>🎛️ Mastering – analog/digital hybrid</li>
-        <li>📦 Bundle packages available</li>
+        <li><img class="gear-icon" src="icons/m15a.png" alt="Tape Icon">Telefunken M15A master tape machine</li>
+        <li>Apollo 8 Thunderbolt converters</li>
+        <li><img class="gear-icon" src="icons/eqp1a.png" alt="EQ Icon">Audioscape Pultec EQP1</li>
+        <li>Modded EELA Audio 12-channel summing desk</li>
+        <li><img class="gear-icon" src="icons/quadraverb.png" alt="Reverb Icon">Alesis Quadraverb</li>
+        <li><img class="gear-icon" src="icons/rainmaker.png" alt="Rainmaker">Intellijel Rainmaker</li>
+        <li>ATLP 120x DJ setup with Omnitronic 222 mixer</li>
+        <li>Zoom stereo recorder</li>
+        <li>Shure SM7, t.bone SC500</li>
+        <li><img class="gear-icon" src="icons/1176.png" alt="1176 Icon">1176-style compressor</li>
       </ul>
-    </div>
+    </details>
+
+    <details>
+      <summary>📁 Software</summary>
+      <ul>
+        <li>Live 12 Suite</li>
+        <li>Pro Tools</li>
+        <li>Reason 11</li>
+        <li>Arturia V Collection X</li>
+        <li>Arturia FX Collection 5</li>
+        <li>FabFilter Pro Q, L, R, C</li>
+        <li>Soundtheory Gullfoss</li>
+        <li>iZotope Nectar, Neutron, Ozone 3, RX 8</li>
+        <li>SIR Standard Clip</li>
+        <li>Sonnox Oxford Inflator</li>
+        <li>Waves C-Center, C6, RBass, S1 Imager</li>
+        <li>UAD Signature Collection</li>
+        <li>Melda Production Suite</li>
+        <li>Spat Room Simulation</li>
+        <li>Melodyne Vocal Correction</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>📁 Synths</summary>
+      <ul>
+        <li>Nord Lead 2X</li>
+        <li>Elektron Monomachine</li>
+        <li>Elektron Octatrack MK2</li>
+        <li>ARP 2600</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>📁 Instruments</summary>
+      <ul>
+        <li>Fender Jazz Bass (Mexican)</li>
+        <li>Squier Telecaster</li>
+        <li>Random percussion (shakers, etc.)</li>
+      </ul>
+    </details>
+
+    <details>
+      <summary>📁 Monitoring</summary>
+      <ul>
+        <li>ADAM Audio T5V</li>
+        <li>Auralex treatment</li>
+        <li>Sonarworks room calibration</li>
+      </ul>
+    </details>
   </div>
 
-  <!-- Contact Window -->
-  <div class="window">
-    <div class="title-bar">
-      <div class="title-bar-text">Contact</div>
-      <div class="title-bar-controls">
-        <button aria-label="Close"></button>
-      </div>
-    </div>
-    <div class="window-body">
-      <p>Email: <a href="mailto:vincent@yourdomain.com">vincent@yourdomain.com</a></p>
-      <p>Instagram: <a href="#">@vincentaudio</a></p>
-    </div>
-  </div>
-
-  <!-- Taskbar -->
   <div class="taskbar">
     <button class="start-button">Start</button>
     <div class="clock" id="clock"></div>
   </div>
 
   <script>
-    // Basic clock for the taskbar
     function updateClock() {
       const now = new Date();
       const hours = now.getHours().toString().padStart(2, '0');
