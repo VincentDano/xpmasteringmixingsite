@@ -14,43 +14,19 @@
       padding: 20px;
       user-select: none;
     }
-    .highlighted-gear {
-      list-style: none;
-      margin-left: 0;
-    }
-    .highlighted-gear > img {
-      width: 48px !important;
-      vertical-align: middle;
-      margin-right: 8px;
-      display: inline-block;
-      transition: transform 0.3s ease;
-      transform-origin: center;
-    }
-    .highlighted-gear > img:hover {
-      transform: scale(1.15);
-    }
-    .highlighted-gear > *:not(img) {
-      display: inline;
-    }
     .window {
-      max-width: 700px;
       position: absolute;
       z-index: 10;
       border: 1px solid black;
+      max-width: 700px;
       opacity: 0;
       animation: fadeIn 0.7s ease forwards;
     }
     @keyframes fadeIn {
-      to {
-        opacity: 1;
-      }
+      to { opacity: 1; }
     }
-    .title-bar {
-      cursor: grab;
-    }
-    .notification .title-bar {
-      cursor: default;
-    }
+    .title-bar { cursor: grab; }
+    .notification .title-bar { cursor: default; }
     .taskbar {
       position: fixed;
       bottom: 0;
@@ -69,24 +45,17 @@
       margin-left: auto;
       font-size: 0.9em;
     }
-    .taskbar-button {
-      margin-right: 6px;
-    }
-    .tabs { display: flex; margin-bottom: 8px; }
-    .tabs button { padding: 4px 10px; border: 1px solid #000; border-bottom: none; background-color: #d4d0c8; cursor: pointer; }
-    .tabs button.active { background-color: #ffffff; font-weight: bold; }
-    .tab-content { border: 1px solid #000; background-color: #ffffff; padding: 10px; display: none; }
-    .tab-content.active { display: block; }
+    .taskbar-button { margin-right: 6px; }
     .notification {
       position: fixed;
-      bottom: 50px;
+      bottom: 55px;
       right: 10px;
+      width: 260px;
       background-color: #ffffe1;
       border: 1px solid #000080;
-      padding: 10px;
+      padding: 8px 10px;
       font-family: Tahoma, sans-serif;
       font-size: 13px;
-      width: 260px;
       box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
       border-radius: 4px;
       opacity: 0;
@@ -140,31 +109,63 @@
       opacity: 0;
       pointer-events: none;
     }
+    .tabs { display: flex; margin-bottom: 8px; }
+    .tabs button { padding: 4px 10px; border: 1px solid #000; border-bottom: none; background-color: #d4d0c8; cursor: pointer; }
+    .tabs button.active { background-color: #ffffff; font-weight: bold; }
+    .tab-content { border: 1px solid #000; background-color: #ffffff; padding: 10px; display: none; }
+    .tab-content.active { display: block; }
+    .highlighted-gear { list-style: none; margin-left: 0; }
+    .highlighted-gear > img {
+      width: 48px !important;
+      vertical-align: middle;
+      margin-right: 8px;
+      display: inline-block;
+      transition: transform 0.3s ease;
+      transform-origin: center;
+    }
+    .highlighted-gear > img:hover { transform: scale(1.15); }
+    .highlighted-gear > *:not(img) { display: inline; }
   </style>
   <script>
-    if (window.innerWidth < 768) {
-      window.location.replace("mobile.html");
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
       const popup = document.getElementById('labelPopup');
       const closeBtn = document.getElementById('closeNotification');
       const loading = document.getElementById('loading-screen');
       const windows = document.querySelectorAll('.window');
 
-      // Remove loading screen after short delay
       setTimeout(() => {
         loading.classList.add('fade-out');
         setTimeout(() => loading.remove(), 500);
       }, 1500);
 
-      // Position windows in staggered layout and make them draggable
-      let startX = 40;
-      let startY = 60;
-      windows.forEach((win, index) => {
-        win.style.top = `${startY + index * 30}px`;
-        win.style.left = `${startX + index * 40}px`;
+      const positions = [];
+      const screenWidth = window.innerWidth;
+      const screenHeight = window.innerHeight;
+      const padding = 50;
 
+      function getNonOverlappingPosition(width, height) {
+        let maxAttempts = 100;
+        while (maxAttempts-- > 0) {
+          const top = Math.floor(Math.random() * (screenHeight - height - padding));
+          const left = Math.floor(Math.random() * (screenWidth - width - padding));
+          const overlapping = positions.some(pos => (
+            left < pos.left + pos.width &&
+            left + width > pos.left &&
+            top < pos.top + pos.height &&
+            top + height > pos.top
+          ));
+          if (!overlapping) {
+            positions.push({ top, left, width, height });
+            return { top, left };
+          }
+        }
+        return { top: 0, left: 0 }; // fallback
+      }
+
+      windows.forEach((win) => {
+        const { top, left } = getNonOverlappingPosition(360, 240);
+        win.style.top = `${top}px`;
+        win.style.left = `${left}px`;
         const title = win.querySelector('.title-bar');
         let offsetX, offsetY, isDragging = false;
 
@@ -188,8 +189,6 @@
         });
       });
 
-      // Label popup
-      popup.classList.remove('visible');
       setTimeout(() => {
         popup.classList.add('visible');
         const sound = new Audio('balloon.mp3');
@@ -199,10 +198,48 @@
       closeBtn.addEventListener('click', () => {
         popup.classList.remove('visible');
       });
+
+      const tabs = document.querySelectorAll('#gearTabs button');
+      const contents = document.querySelectorAll('.tab-content');
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.classList.remove('active'));
+          contents.forEach(c => c.classList.remove('active'));
+          tab.classList.add('active');
+          contents[index].classList.add('active');
+        });
+      });
     });
+
+    function restoreWindow(id, btn) {
+      const el = document.getElementById(id);
+      el.style.display = 'block';
+      if (btn) btn.remove();
+    }
+
+    function minimizeToTaskbar(id) {
+      const el = document.getElementById(id);
+      el.style.display = 'none';
+      const taskbar = document.getElementById('taskbar');
+      const btn = document.createElement('button');
+      btn.textContent = el.querySelector('.title-bar-text').textContent;
+      btn.className = 'taskbar-button';
+      btn.onclick = function () {
+        restoreWindow(id, this);
+      };
+      taskbar.insertBefore(btn, taskbar.lastElementChild);
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const hours = now.getHours().toString().padStart(2, '0');
+      const minutes = now.getMinutes().toString().padStart(2, '0');
+      document.getElementById('clock').textContent = `${hours}:${minutes}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
   </script>
 </head>
-
 
 <body>
 <div id="loading-screen">
