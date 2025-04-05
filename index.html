@@ -35,7 +35,6 @@
     .window {
       max-width: 600px;
       margin: 30px auto;
-      cursor: move;
       position: absolute;
       z-index: 10;
     }
@@ -94,7 +93,7 @@
       <div class="title-bar">
         <div class="title-bar-text">Studio Gear Overview</div>
         <div class="title-bar-controls">
-          <button aria-label="Close"></button>
+          <button aria-label="Minimize" onclick="toggleWindow('window1')"></button>
         </div>
       </div>
       <div class="window-body">
@@ -117,7 +116,7 @@
       <div class="title-bar">
         <div class="title-bar-text">Contact</div>
         <div class="title-bar-controls">
-          <button aria-label="Close"></button>
+          <button aria-label="Minimize" onclick="toggleWindow('window2')"></button>
         </div>
       </div>
       <div class="window-body">
@@ -161,9 +160,11 @@
       header.style.cursor = 'grab';
 
       header.addEventListener('mousedown', function (e) {
+        e.preventDefault();
         isDown = true;
-        offsetX = e.clientX - el.offsetLeft;
-        offsetY = e.clientY - el.offsetTop;
+        const rect = el.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
         header.style.cursor = 'grabbing';
       });
 
@@ -174,9 +175,18 @@
 
       document.addEventListener('mousemove', function (e) {
         if (!isDown) return;
-        el.style.left = (e.clientX - offsetX) + 'px';
-        el.style.top = (e.clientY - offsetY) + 'px';
+        el.style.left = `${e.clientX - offsetX}px`;
+        el.style.top = `${e.clientY - offsetY}px`;
       });
+    }
+
+    function toggleWindow(id) {
+      const el = document.getElementById(id);
+      if (el.style.display === 'none') {
+        el.style.display = 'block';
+      } else {
+        el.style.display = 'none';
+      }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
