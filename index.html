@@ -3,13 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vincent Dano Mixing and Mastering</title>
+  <title>Vincent Audio Services</title>
   <link rel="stylesheet" href="https://unpkg.com/xp.css" />
   <link rel="icon" type="image/png" href="icons/m15a.png" />
   <style>
+    @font-face {
+      font-family: 'MS Sans Serif';
+      src: local('Microsoft Sans Serif'), local('MS Sans Serif'), sans-serif;
+    }
     body {
       background-color: #008080;
-      font-family: sans-serif;
+      font-family: 'MS Sans Serif', sans-serif;
       margin: 0;
       padding: 20px;
     }
@@ -63,6 +67,7 @@
       padding: 0 10px;
       border-top: 2px solid white;
       gap: 6px;
+      font-family: 'MS Sans Serif', sans-serif;
     }
     .start-button {
       margin-right: 10px;
@@ -180,7 +185,7 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    window.onload = function () {
+    window.addEventListener('load', () => {
       setTimeout(() => {
         const loader = document.getElementById('loader');
         loader.style.opacity = 0;
@@ -188,13 +193,18 @@
           loader.style.display = 'none';
           document.getElementById('mainContent').style.display = 'block';
           document.getElementById('taskbar').style.display = 'flex';
-          const sound = document.getElementById('logonSound');
-          if (sound) {
-            sound.play().catch(() => {});
+
+          const logon = document.getElementById('logonSound');
+          if (logon && typeof logon.play === 'function') {
+            logon.volume = 1.0;
+            const playPromise = logon.play();
+            if (playPromise !== undefined) {
+              playPromise.catch(e => console.warn('Autoplay blocked:', e));
+            }
           }
         }, 500);
       }, 2500);
-    };
+    });
 
     function makeDraggable(el) {
       const header = el.querySelector('.title-bar');
