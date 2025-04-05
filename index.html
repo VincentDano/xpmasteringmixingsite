@@ -38,27 +38,18 @@
       z-index: 10;
     }
 
-    .gear-folder-list {
-      display: flex;
-      flex-wrap: wrap;
-      padding: 10px;
-      gap: 16px;
+    fieldset {
+      margin-bottom: 10px;
     }
 
-    .folder-icon {
-      width: 64px;
-      height: 64px;
-      background: url('https://win98icons.alexmeub.com/icons/png/folder_open_file_mydocs-5.png') no-repeat center;
-      background-size: contain;
-      text-align: center;
-      font-size: 12px;
-      color: black;
-      width: 80px;
-      height: 80px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-end;
+    legend {
+      font-weight: bold;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      padding-left: 4px;
     }
 
     .taskbar {
@@ -98,17 +89,61 @@
         </div>
       </div>
       <div class="window-body">
-        <div class="gear-folder-list">
-          <div class="folder-icon">M15A Tape</div>
-          <div class="folder-icon">Pultec EQP1</div>
-          <div class="folder-icon">Quadraverb</div>
-          <div class="folder-icon">Rainmaker</div>
-          <div class="folder-icon">1176</div>
-          <div class="folder-icon">Apollo 8</div>
-          <div class="folder-icon">Summing Desk</div>
-          <div class="folder-icon">DJ Setup</div>
-          <div class="folder-icon">Zoom Rec</div>
-          <div class="folder-icon">SM7 / SC500</div>
+        <div class="tabbed-pane">
+          <menu role="tablist">
+            <button role="tab" aria-selected="true">Outboard</button>
+            <button role="tab">Software</button>
+            <button role="tab">Synths</button>
+            <button role="tab">Instruments</button>
+            <button role="tab">Monitoring</button>
+          </menu>
+          <article role="tabpanel">
+            <fieldset><legend>Outboard & Recording</legend>
+              <label>Telefunken M15A master tape machine</label>
+              <label>Apollo 8 Thunderbolt converters</label>
+              <label>Audioscape Pultec EQP1</label>
+              <label>Modded EELA Audio 12-channel summing desk</label>
+              <label>Alesis Quadraverb</label>
+              <label>Intellijel Rainmaker</label>
+              <label>ATLP 120x DJ setup w/ Omnitronic 222 mixer</label>
+              <label>Zoom stereo recorder</label>
+              <label>Shure SM7, t.bone SC500</label>
+              <label>1176-style compressor</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Software</legend>
+              <label>Live 12 Suite, Pro Tools, Reason 11</label>
+              <label>Arturia V Collection X + FX Collection 5</label>
+              <label>FabFilter Pro-Q/L/R/C, SoundTheory Gullfoss</label>
+              <label>iZotope Nectar/Neutron/Ozone, RX 8</label>
+              <label>SIR StandardClip, Sonnox Oxford Inflator</label>
+              <label>Waves (C6, RBass, S1, etc.), UAD Signature</label>
+              <label>Melda Production Suite, SPAT, Melodyne</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Synths</legend>
+              <label>Nord Lead 2X</label>
+              <label>Elektron Monomachine</label>
+              <label>Elektron Octatrack MKII</label>
+              <label>ARP 2600</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Instruments</legend>
+              <label>Fender Jazz Bass (Mexican)</label>
+              <label>Squier Telecaster</label>
+              <label>Random percussion (shakers, etc.)</label>
+            </fieldset>
+          </article>
+          <article role="tabpanel" hidden>
+            <fieldset><legend>Monitoring</legend>
+              <label>ADAM Audio T5V</label>
+              <label>Auralex Treatment</label>
+              <label>Sonarworks Calibration</label>
+            </fieldset>
+          </article>
         </div>
       </div>
     </div>
@@ -161,10 +196,10 @@
       header.style.cursor = 'grab';
 
       header.addEventListener('mousedown', function (e) {
-        e.preventDefault();
         isDown = true;
-        offsetX = e.offsetX;
-        offsetY = e.offsetY;
+        const rect = el.getBoundingClientRect();
+        offsetX = e.clientX - rect.left;
+        offsetY = e.clientY - rect.top;
         header.style.cursor = 'grabbing';
       });
 
@@ -182,16 +217,24 @@
 
     function toggleWindow(id) {
       const el = document.getElementById(id);
-      if (el.style.display === 'none') {
-        el.style.display = 'block';
-      } else {
-        el.style.display = 'none';
-      }
+      el.style.display = el.style.display === 'none' ? 'block' : 'none';
     }
 
     document.addEventListener('DOMContentLoaded', () => {
       makeDraggable(document.getElementById('window1'));
       makeDraggable(document.getElementById('window2'));
+
+      const tabs = document.querySelectorAll('[role="tab"]');
+      const panels = document.querySelectorAll('[role="tabpanel"]');
+
+      tabs.forEach((tab, index) => {
+        tab.addEventListener('click', () => {
+          tabs.forEach(t => t.setAttribute('aria-selected', false));
+          panels.forEach(p => p.hidden = true);
+          tab.setAttribute('aria-selected', true);
+          panels[index].hidden = false;
+        });
+      });
     });
   </script>
 </body>
