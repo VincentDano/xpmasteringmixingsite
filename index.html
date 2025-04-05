@@ -85,9 +85,11 @@
       max-width: 250px;
       opacity: 0;
       transition: opacity 0.5s ease-in-out;
+      pointer-events: none;
     }
     .notification.visible {
       opacity: 1;
+      pointer-events: auto;
     }
     #loading-screen {
       position: fixed;
