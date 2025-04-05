@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vincent - audio engineer</title>
+  <title>Vincent Audio Services</title>
   <link rel="stylesheet" href="https://unpkg.com/xp.css" />
   <link rel="icon" type="image/png" href="icons/m15a.png" />
   <style>
@@ -126,6 +126,39 @@
     .highlighted-gear > img:hover { transform: scale(1.15); }
     .highlighted-gear > *:not(img) { display: inline; }
   </style>
+</head>
+<body>
+  <div id="loading-screen">
+    <img src="icons/loading.gif" alt="Loading...">
+  </div>
+
+  <div class="notification" id="labelPopup">
+    <button class="close-btn" id="closeNotification">×</button>
+    <p><strong>Check out the label →</strong><br><a href="https://binarypleasures.com" target="_blank">binarypleasures.com</a></p>
+  </div>
+
+  <div class="taskbar" id="taskbar">
+    <button class="taskbar-button" onclick="restoreWindow('windowSpotify', this)">Playlist – Selected Works</button>
+    <div class="clock" id="clock"></div>
+  </div>
+
+  <div class="window" id="windowAbout">
+    <div class="title-bar">
+      <div class="title-bar-text">About Me</div>
+      <div class="title-bar-controls">
+        <button aria-label="Close" onclick="this.closest('.window').style.display='none'"></button>
+      </div>
+    </div>
+    <div class="window-body">
+      <p><strong>"Serve the music"</strong> – that is the guideline I have always gone by and most likely will for the foreseeable future.</p>
+      <p>What that could mean for your specific project is not predetermined; there are no standard procedures I like to follow. However, there is an ever-growing repertoire of tools, techniques, and practices I carry with me, and from which I will choose carefully to tailor to your needs.</p>
+      <p>When contacting me about your production, you may find that my prices are not particularly high—some would even consider them insulting to the craft of mixing and mastering. I stand at the beginning of my career, and while I am convinced I can deliver very high-quality results, I am only 20 years of age and still have a lot of experience to gather.</p>
+      <p>While I have listed the tools I particularly enjoy using, don't be set on me using any one of them on your project specifically. Trust me to use what I deem best. Don't trust the gear—trust the person. I know that's a lot to ask, because as a musician myself, I am very well aware of the commitment it takes to leave your track to someone—essentially a stranger—but I will try my best to make it worth your while.</p>
+    </div>
+  </div>
+
+  <!-- Insert other windows like Gear, Contact, and Spotify below here -->
+
   <script>
     window.addEventListener('DOMContentLoaded', () => {
       const popup = document.getElementById('labelPopup');
@@ -239,78 +272,5 @@
     setInterval(updateClock, 1000);
     updateClock();
   </script>
-</head>
-
-<body>
-<div id="loading-screen">
-  <img src="icons/xploading.gif" alt="Loading...">
-</div>
-<div class="taskbar" id="taskbar">
-  <button class="taskbar-button" onclick="document.getElementById('playlistWindow').style.display='block'">Playlist – Selected Works</button>
-  <div class="clock" id="clock"></div>
-</div>
-<div class="window notification" id="labelPopup">
-  <div class="title-bar">
-    <div class="title-bar-text">Notification</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="document.getElementById('labelPopup').style.display='none'"></button>
-    </div>
-  </div>
-  <div class="window-body">
-    <p>Check out the label → <a href="https://binarypleasures.com" target="_blank">binarypleasures.com</a></p>
-  </div>
-</div>
-<div class="window" id="aboutWindow">
-  <div class="title-bar">
-    <div class="title-bar-text">About Me</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="document.getElementById('aboutWindow').style.display='none'"></button>
-    </div>
-  </div>
-  <div class="window-body">
-    <div style="display: flex; gap: 10px; align-items: flex-start;">
-      <img src="about.jpg" alt="About Me" width="100" style="border: 1px solid #000;">
-      <p style="margin: 0;">Hi there! I'm Vincent, a freelance audio engineer based in Germany. 
-     "Serve the music" - that is the guideline I have always gone by and most likely will for the foreseeable future. 
-        What that could mean for your specific project is not predetermined, there are no standard procedures I like to go by, though there is an evergrowing reportoire of tools, techniques and practices I carry around with me and from which I will choose carefully to tailor your needs.
-      When contacting me about your production, you may find that my prices are not particularly high, some would even consider them insulting to the craft of mixing and mastering. I stand at the beginning of my career and while I am convinced I can deliver very high quality results, I am only 20 years of
-      age and still a lot of experience to gather. While I have listed the tools I particularly enhjoy using, don't be set on my using one of them on your project specifcally, trust me to use what I deem best. Don't trust the gear, trust the person, which I know is a lot to ask because as a musician myself,
-      I am very well aware of the commitment it takes to leave your track to someone, a stranger essentially, though I will try my best to make it worth your while.</p>
-    </div>
-  </div>
-</div>
-<div class="window" id="contactWindow">
-  <div class="title-bar">
-    <div class="title-bar-text">Contact me</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="document.getElementById('contactWindow').style.display='none'"></button>
-    </div>
-  </div>
-  <div class="window-body">
-    <p>Email: <a href="mailto:vincent@binarypleasures.com">vincent@binarypleasures.com</a></p>
-    <p>Instagram: <a href="https://instagram.com/vincentdanopoulos" target="_blank">@vincentdanopoulos</a></p>
-  </div>
-</div>
-<div class="window" id="playlistWindow" style="display: none;">
-  <div class="title-bar">
-    <div class="title-bar-text">Playlist – Selected Works</div>
-    <div class="title-bar-controls">
-      <button aria-label="Close" onclick="document.getElementById('playlistWindow').style.display='none'"></button>
-    </div>
-  </div>
-  <div class="window-body">
-    <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/4CSGT8AgTrb9MVx0JM2ASa?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-  </div>
-</div>
-<script>
-  function updateClock() {
-    const now = new Date();
-    const hours = now.getHours().toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    document.getElementById('clock').textContent = `${hours}:${minutes}`;
-  }
-  setInterval(updateClock, 1000);
-  updateClock();
-</script>
 </body>
 </html>
