@@ -131,7 +131,7 @@
       const popup = document.getElementById('labelPopup');
       const closeBtn = document.getElementById('closeNotification');
       const loading = document.getElementById('loading-screen');
-      const windows = document.querySelectorAll('.window');
+      const windows = document.querySelectorAll('.window:not(.notification)');
 
       setTimeout(() => {
         loading.classList.add('fade-out');
