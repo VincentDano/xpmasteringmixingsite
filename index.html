@@ -149,7 +149,24 @@
     window.addEventListener('DOMContentLoaded', () => {
       const popup = document.getElementById('labelPopup');
       const closeBtn = document.getElementById('closeNotification');
+      const loading = document.getElementById('loading-screen');
+      const windows = document.querySelectorAll('.window');
 
+      // Remove loading screen after short delay
+      setTimeout(() => {
+        loading.classList.add('fade-out');
+        setTimeout(() => loading.remove(), 500);
+      }, 1500);
+
+      // Position windows randomly (non-overlapping staggered start)
+      let startX = 40;
+      let startY = 60;
+      windows.forEach((win, index) => {
+        win.style.top = `${startY + index * 30}px`;
+        win.style.left = `${startX + index * 40}px`;
+      });
+
+      // Label popup
       popup.classList.remove('visible');
       setTimeout(() => {
         popup.classList.add('visible');
